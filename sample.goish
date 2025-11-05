@@ -1,0 +1,72 @@
+package main
+
+const k float64 = 20;
+const c_x int = 10;
+
+var g_var int = 30;
+
+func GCD(a, b int) int {
+    if b == 0 {
+        return a;
+    }
+    return GCD(b, a % b);
+}
+
+func GCDit(a, b int) int {
+    var t int;
+    for b != 0 {
+        t = b;
+        b = a % b;
+        a = t;
+    }
+    return a;
+}
+
+func Fibonacci(n int) int {
+    if n <= 2 {
+        return 1;
+    }
+    return Fibonacci(n - 2) + Fibonacci(n - 1);
+}
+
+func Looping(n int) int {
+    var i, j int;
+    for i = 0; i < n; i = i + 1 {
+        for j = i; j < n; j = j + 1 {
+            PrintN(4, i, j, g_var, c_x);
+        }
+        g_var = g_var + 1;
+    }
+    return 0;
+}
+
+func SumOddEven(start, end int) {
+    var sum_even, sum_odd = 0, 0;
+    var i int;
+    i = start;
+    // while-style loop avoids empty-init for
+    for i <= end {
+        Print(i);
+        if i % 2 == 0 {
+            sum_even = sum_even + i;
+        } else {
+            sum_odd = sum_odd + i;
+        }
+        i = i + 1;
+    }
+    PrintN(2, sum_odd, sum_even);
+    return;
+}
+
+func Grobbit() {
+    var n int;
+    n = GCD(21, 14);
+    Print(n);
+    n = GCDit(21, 14);
+    Print(n);
+    n = Fibonacci(5);
+    Print(n);
+    n = Looping(3);
+    Print(n);
+    SumOddEven(1, 10);
+}
